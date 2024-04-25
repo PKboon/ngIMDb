@@ -1,13 +1,18 @@
+$slideHeight: 36rem;
+
 .slider {
+  height: $slideHeight;
+  position: relative;
   .slide {
     width: 100%;
+    height: $slideHeight;
+    position: absolute;
     &-bg {
-      height: 35rem;
+      height: $slideHeight;
       position: relative;
       img {
-        height: 100%;
-        width: 100%;
         object-fit: cover;
+        object-position: top;
       }
       &::after {
         position: absolute;

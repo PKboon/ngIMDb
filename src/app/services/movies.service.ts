@@ -1,15 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MovieDto } from '../types/movie';
+import { apiKey, serviceBaseUrl } from '../contants';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MoviesService {
-  constructor(private httpClient: HttpClient) {}
+
+  constructor(private httpClient: HttpClient) {
+  }
 
   getPopularMovies() {
-    return this.httpClient.get(
-      'https://api.themoviedb.org/3/movie/popular?api_key=c41d087a09490c731ad89deea7713c80'
+    return this.httpClient.get<MovieDto>(
+      `${serviceBaseUrl}/movie/popular?api_key=${apiKey}`,
     );
   }
 }
