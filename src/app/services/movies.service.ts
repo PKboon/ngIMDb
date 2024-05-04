@@ -9,21 +9,9 @@ import { apiKey, serviceBaseUrl } from '../contants';
 export class MoviesService {
   constructor(private httpClient: HttpClient) {}
 
-  getPopularMovies() {
+  getMoviesByType(type: string) {
     return this.httpClient.get<MovieDto>(
-      `${serviceBaseUrl}/movie/popular?api_key=${apiKey}`
-    );
-  }
-
-  getUpcomingMovies() {
-    return this.httpClient.get<MovieDto>(
-      `${serviceBaseUrl}/movie/upcoming?api_key=${apiKey}`
-    );
-  }
-
-  getTopRatedMovies() {
-    return this.httpClient.get<MovieDto>(
-      `${serviceBaseUrl}/movie/top_rated?api_key=${apiKey}`
+      `${serviceBaseUrl}/movie/${type}?api_key=${apiKey}`
     );
   }
 }

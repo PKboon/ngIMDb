@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
 import { AsyncPipe, CommonModule, NgOptimizedImage } from '@angular/common';
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { imageBaseUrl } from '../../contants';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+import { POPULAR, imageBaseUrl } from '../../contants';
 
 @Component({
   selector: 'slider',
   standalone: true,
-  imports: [
-    AsyncPipe,
-    CommonModule,
-    NgOptimizedImage,
-  ],
+  imports: [AsyncPipe, CommonModule, NgOptimizedImage],
   templateUrl: './slider.component.html',
   styleUrl: './slider.component.scss',
   animations: [
@@ -22,7 +24,7 @@ import { imageBaseUrl } from '../../contants';
   ],
 })
 export class SliderComponent implements OnInit {
-  movies$ = this.moviesService.getPopularMovies();
+  movies$ = this.moviesService.getMoviesByType(POPULAR);
   slideIndex = 0;
   imageBaseUrl = imageBaseUrl;
 
@@ -30,7 +32,7 @@ export class SliderComponent implements OnInit {
 
   ngOnInit() {
     setInterval(() => {
-      this.slideIndex = (this.slideIndex > 18) ? 0 : this.slideIndex + 1;
+      this.slideIndex = this.slideIndex > 18 ? 0 : this.slideIndex + 1;
     }, 5000);
   }
 }
