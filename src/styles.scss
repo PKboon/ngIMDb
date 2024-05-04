@@ -6,8 +6,15 @@
 body {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
+  color: rgb(200, 200, 200);
+  background-color: #141414;
 }
 
 h1 {
   font-weight: 400;
+}
+
+.container {
+  margin: 0.5rem;
+  padding: 0.5rem;
 }
