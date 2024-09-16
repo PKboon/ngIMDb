@@ -1,18 +1,65 @@
 <ng-container *ngIf="details$ | async as details">
   <slider [slides]="[details]" [isHeader]="true"></slider>
-</ng-container>
 
-<p-tabView>
-  <p-tabPanel header="Header I">
-    <p>Lorem ipsum dolor sit amet...</p>
-  </p-tabPanel>
-  <p-tabPanel header="Header II">
-    <p>
-      Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-      accusantium...
-    </p>
-  </p-tabPanel>
-  <p-tabPanel header="Header III">
-    <p>At vero eos et accusamus et iusto odio dignissimos...</p>
-  </p-tabPanel>
-</p-tabView>
+  <p-tabView>
+    <p-tabPanel header="Overview">
+      <div class="grid">
+        <div class="col-3">
+          <img
+            class="poster"
+            [src]="imagesSizes.md + details.poster_path"
+            [alt]="details.title"
+          />
+        </div>
+        <div class="col-9 overview-details">
+          <div>
+            <h2>Overview</h2>
+            <p>{{ details.overview }}</p>
+          </div>
+
+          <div class="stat">
+            <div class="label">Released Date:</div>
+            <div class="value">
+              {{ details.release_date | date: 'MM/dd/yyyy' }}
+            </div>
+          </div>
+          <div class="stat">
+            <div class="label">Language:</div>
+            <div class="value">
+              {{ details.original_language }}
+            </div>
+          </div>
+          <div class="stat">
+            <div class="label">Revenue:</div>
+            <div class="value">{{ details.revenue | currency }}</div>
+          </div>
+          <div class="stat">
+            <div class="label">Duration:</div>
+            <div class="value">{{ details.runtime }} min</div>
+          </div>
+          <div class="stat">
+            <div class="label">Status:</div>
+            <div class="value">{{ details.status }}</div>
+          </div>
+          <div class="stat">
+            <div class="label">Genres:</div>
+            <div class="value">
+              @for (genre of details.genres; track genre) {
+                <span>{{ genre.name }}</span>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="Videos">
+      <p>
+        Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+        accusantium...
+      </p>
+    </p-tabPanel>
+    <p-tabPanel header="Photos">
+      <p>At vero eos et accusamus et iusto odio dignissimos...</p>
+    </p-tabPanel>
+  </p-tabView>
+</ng-container>

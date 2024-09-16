@@ -6,6 +6,7 @@ import { Movie } from '../../types/movie';
 import { AsyncPipe, JsonPipe, CommonModule } from '@angular/common';
 import { SliderComponent } from '../../components/slider/slider.component';
 import { TabViewModule } from 'primeng/tabview';
+import { IMAGES_SIZES } from '../../contants';
 
 @Component({
   selector: 'app-show-details',
@@ -17,6 +18,8 @@ import { TabViewModule } from 'primeng/tabview';
 export class ShowDetailsComponent implements OnInit {
   id: number = 0;
   details$: Observable<Movie> | null = null;
+  imagesSizes = IMAGES_SIZES;
+
   constructor(
     private router: ActivatedRoute,
     private movieService: MoviesService

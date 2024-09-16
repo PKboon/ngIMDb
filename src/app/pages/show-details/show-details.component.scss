@@ -1,0 +1,25 @@
+::ng-deep {
+  .p-tabview .p-tabview-nav {
+    place-content: center;
+  }
+}
+
+.poster {
+  width: 100%;
+}
+
+.overview-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0 1.5rem;
+  .stat {
+    display: flex;
+    .label {
+      width: 15%;
+    }
+    .value {
+      color: #64b5f6;
+    }
+  }
+}
