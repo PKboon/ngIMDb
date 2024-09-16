@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { MoviesService } from '../../services/movies.service';
+import { Component, Input, OnInit } from '@angular/core';
 import { AsyncPipe, CommonModule, NgOptimizedImage } from '@angular/common';
 import {
   animate,
@@ -8,7 +7,8 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { POPULAR, imageBaseUrl } from '../../contants';
+import { imageBaseUrl } from '../../contants';
+import { Movie } from '../../types/movie';
 
 @Component({
   selector: 'slider',
@@ -24,13 +24,20 @@ import { POPULAR, imageBaseUrl } from '../../contants';
   ],
 })
 export class SliderComponent implements OnInit {
-  movies$ = this.moviesService.getMoviesByType(POPULAR);
+  @Input() slides: Movie[] = [];
+
+  @Input() isHeader: boolean = false;
+
   slideIndex = 0;
   imageBaseUrl = imageBaseUrl;
 
-  constructor(private moviesService: MoviesService) {}
+  constructor() {}
 
   ngOnInit() {
+    if (!this.isHeader) this.changeSlide();
+  }
+
+  changeSlide() {
     setInterval(() => {
       this.slideIndex = this.slideIndex > 18 ? 0 : this.slideIndex + 1;
     }, 5000);

@@ -16,6 +16,7 @@ import { map } from 'rxjs';
   imports: [SliderComponent, BannerComponent, CommonModule],
 })
 export class HomeComponent {
+  popularMovies$ = this.movieService.getMoviesByType(POPULAR);
   upcomingMovies$ = this.movieService.getMoviesByType(UPCOMING);
   topRatedMovies$ = this.movieService.getMoviesByType(TOP_RATED);
   popularTvShows$ = this.tvShowsService
