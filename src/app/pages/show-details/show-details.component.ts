@@ -5,11 +5,12 @@ import { Observable } from 'rxjs';
 import { Movie } from '../../types/movie';
 import { AsyncPipe, JsonPipe, CommonModule } from '@angular/common';
 import { SliderComponent } from '../../components/slider/slider.component';
+import { TabViewModule } from 'primeng/tabview';
 
 @Component({
   selector: 'app-show-details',
   standalone: true,
-  imports: [AsyncPipe, JsonPipe, CommonModule, SliderComponent],
+  imports: [AsyncPipe, JsonPipe, CommonModule, SliderComponent, TabViewModule],
   templateUrl: './show-details.component.html',
   styleUrl: './show-details.component.scss',
 })
