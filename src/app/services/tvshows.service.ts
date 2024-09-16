@@ -1,18 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MovieDto } from '../types/movie';
 import { apiKey, serviceBaseUrl } from '../contants';
 import { map } from 'rxjs';
+import { TvShowDto } from '../types/tvShows';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MoviesService {
+export class TvshowsService {
   constructor(private httpClient: HttpClient) {}
 
-  getMoviesByType(type: string, count = 12) {
+  getTvShowsByType(type: string, count = 12) {
     return this.httpClient
-      .get<MovieDto>(`${serviceBaseUrl}/movie/${type}?api_key=${apiKey}`)
+      .get<TvShowDto>(`${serviceBaseUrl}/tv/${type}?api_key=${apiKey}`)
       .pipe(map((data) => data.results.slice(0, count)));
   }
 }
