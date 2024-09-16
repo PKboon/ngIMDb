@@ -1,4 +1,9 @@
-<a class="show-item" *ngIf="showItem">
+<a
+  class="show-item"
+  *ngIf="showItem"
+  [routerLink]="'details/' + showItem.id"
+  routerLinkActive="router-link-active"
+>
   <div class="show-item-rating">
     <i class="pi pi-star-fill"></i>
     <span>8.8/10</span>
