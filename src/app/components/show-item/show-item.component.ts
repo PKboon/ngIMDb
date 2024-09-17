@@ -14,5 +14,7 @@ import { RouterModule } from '@angular/router';
 export class ShowItemComponent {
   @Input() showItem: Movie | null = null;
 
+  @Input() type: 'movie' | 'tvShow' = 'movie';
+
   imageBaseUrl = imageBaseUrl;
 }

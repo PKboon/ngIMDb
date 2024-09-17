@@ -13,7 +13,7 @@ export const routes: Routes = [
     component: MovieListComponent,
   },
   {
-    path: 'details/:id',
+    path: 'details/:type/:id',
     component: ShowDetailsComponent,
   },
 ];

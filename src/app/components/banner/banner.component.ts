@@ -14,4 +14,6 @@ export class BannerComponent {
   @Input() title: string = '';
 
   @Input() shows: Movie[] = [];
+
+  @Input() type: 'movie' | 'tvShow' = 'movie';
 }

@@ -3,13 +3,25 @@
 }
 
 @if (upcomingMovies$ | async; as upcomingMovies) {
-  <banner title="Upcoming Movies" [shows]="upcomingMovies"></banner>
+  <banner
+    title="Upcoming Movies"
+    [shows]="upcomingMovies"
+    type="movie"
+  ></banner>
 }
 
 @if (topRatedMovies$ | async; as topRatedMovies) {
-  <banner title="Top Rated Movies" [shows]="topRatedMovies"></banner>
+  <banner
+    title="Top Rated Movies"
+    [shows]="topRatedMovies"
+    type="movie"
+  ></banner>
 }
 
 @if (popularTvShows$ | async; as popularTvShows) {
-  <banner title="Popular TV Shows" [shows]="popularTvShows"></banner>
+  <banner
+    title="Popular TV Shows"
+    [shows]="popularTvShows"
+    type="tvShow"
+  ></banner>
 }

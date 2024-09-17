@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Movie, MovieDto } from '../types/movie';
 import { apiKey, serviceBaseUrl } from '../contants';
 import { map } from 'rxjs';
-import { VideosDto, ImagesDto, CreditsDto } from '../types/video';
+import { VideosDto, ImagesDto, CreditsDto } from '../types/media';
 
 @Injectable({
   providedIn: 'root',

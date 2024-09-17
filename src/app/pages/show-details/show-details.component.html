@@ -52,68 +52,84 @@
         </div>
       </div>
     </p-tabPanel>
-    <p-tabPanel header="Videos">
-      @if (videos$ | async; as videos) {
-        <div class="grid">
-          @for (video of videos; track video.key) {
-            <div class="col-4">
-              <video-frame [key]="video.key"></video-frame>
-            </div>
-          }
-        </div>
+    @if (videos$ | async; as videos) {
+      @if (videos.length > 0) {
+        <p-tabPanel header="Videos">
+          <div class="grid">
+            @for (video of videos; track video.key) {
+              <div class="col-4">
+                <video-frame [key]="video.key"></video-frame>
+              </div>
+            }
+          </div>
+        </p-tabPanel>
       }
-    </p-tabPanel>
+    }
     <p-tabPanel header="Photos">
       @if (images$ | async; as images) {
-        <div class="grid">
-          @for (image of images; track image.file_path) {
-            <div class="col-2">
-              <p-image
-                src="{{ imagesSizes.lg }}{{ image.file_path }}"
-                alt="{{ details.title }}"
-                width="100%"
-                [preview]="true"
-              />
-            </div>
-          }
-        </div>
+        @if (images.length > 0) {
+          <div class="grid">
+            @for (image of images; track image.file_path) {
+              <div class="col-2">
+                <p-image
+                  src="{{ imagesSizes.lg }}{{ image.file_path }}"
+                  alt="{{ details.title }}"
+                  width="100%"
+                  [preview]="true"
+                />
+              </div>
+            }
+          </div>
+        }
       }
     </p-tabPanel>
   </p-tabView>
 
   @if (casts$ | async; as casts) {
-    <h2 class="cast-title">Casts</h2>
-    <p-carousel
-      [value]="casts"
-      [numVisible]="6"
-      [numScroll]="3"
-      [circular]="true"
-    >
-      <ng-template let-cast pTemplate="item">
-        <div class="cast">
-          @if (cast.profile_path) {
-            <img
-              class="cast-image"
-              [src]="imagesSizes.sm + cast.profile_path"
-              alt=""
-            />
-          } @else {
-            <img
-              class="cast-image"
-              src="../../../assets/images/actor.jpg"
-              alt=""
-            />
-          }
-          <h3 class="cast-name">{{ cast.name }}</h3>
-          <div class="cast-character">({{ cast.character }})</div>
-        </div>
-      </ng-template>
-    </p-carousel>
+    @if (casts.length > 0) {
+      <h2 class="cast-title">Casts</h2>
+      <p-carousel
+        [value]="casts"
+        [numVisible]="6"
+        [numScroll]="3"
+        [circular]="true"
+      >
+        <ng-template let-cast pTemplate="item">
+          <div class="cast">
+            @if (cast.profile_path) {
+              <img
+                class="cast-image"
+                [src]="imagesSizes.sm + cast.profile_path"
+                alt=""
+              />
+            } @else {
+              <img
+                class="cast-image"
+                src="../../../assets/images/actor.jpg"
+                alt=""
+              />
+            }
+            <div class="cast-info">
+              <h3 class="cast-name">{{ cast.name }}</h3>
+              @if (cast.character) {
+                <div class="cast-character">({{ cast.character }})</div>
+              }
+            </div>
+          </div>
+        </ng-template>
+      </p-carousel>
+    } @else {
+      <h3 class="cast-title">No cast infomation</h3>
+    }
   }
 
   @if (similars$ | async; as similars) {
     <div class="similar">
-      <banner title="Similar Movies" [shows]="similars"></banner>
+      <banner
+        title="Similar {{ type === 'movie' ? 'Movies' : 'TV Shows' }}"
+        [type]="type"
+        [shows]="similars"
+      ></banner>
     </div>
   }
 }
