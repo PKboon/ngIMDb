@@ -23,3 +23,20 @@
     }
   }
 }
+
+.cast-title {
+  padding: 0 2.5rem;
+}
+
+.cast {
+  padding: 0 0.5rem 2rem;
+  text-align: center;
+
+  &-image {
+    width: 100%;
+  }
+}
+
+.similar {
+  padding: 0 1.5rem 5rem;
+}

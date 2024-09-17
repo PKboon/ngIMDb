@@ -64,7 +64,56 @@
       }
     </p-tabPanel>
     <p-tabPanel header="Photos">
-      <p>At vero eos et accusamus et iusto odio dignissimos...</p>
+      @if (images$ | async; as images) {
+        <div class="grid">
+          @for (image of images; track image.file_path) {
+            <div class="col-2">
+              <p-image
+                src="{{ imagesSizes.lg }}{{ image.file_path }}"
+                alt="{{ details.title }}"
+                width="100%"
+                [preview]="true"
+              />
+            </div>
+          }
+        </div>
+      }
     </p-tabPanel>
   </p-tabView>
+
+  @if (casts$ | async; as casts) {
+    <h2 class="cast-title">Casts</h2>
+    <p-carousel
+      [value]="casts"
+      [numVisible]="6"
+      [numScroll]="3"
+      [circular]="true"
+    >
+      <ng-template let-cast pTemplate="item">
+        <div class="cast">
+          @if (cast.profile_path) {
+            <img
+              class="cast-image"
+              [src]="imagesSizes.sm + cast.profile_path"
+              alt=""
+            />
+          } @else {
+            <img
+              class="cast-image"
+              src="../../../assets/images/actor.jpg"
+              alt=""
+            />
+          }
+          <h3 class="cast-name">{{ cast.name }}</h3>
+          <div class="cast-character">({{ cast.character }})</div>
+        </div>
+      </ng-template>
+    </p-carousel>
+  }
+
+  @if (similars$ | async; as similars) {
+    <div class="similar">
+      <banner title="Similar Movies" [shows]="similars"></banner>
+    </div>
+  }
 }

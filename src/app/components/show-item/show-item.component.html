@@ -1,7 +1,8 @@
 @if (showItem) {
   <a
     class="show-item"
-    [routerLink]="'details/' + showItem.id"
+    [routerLink]="'/details/' + showItem.id"
+    target="_blank"
     routerLinkActive="router-link-active"
   >
     <div class="show-item-rating">
@@ -10,9 +11,8 @@
     </div>
     <div class="show-item-image">
       <img
-        ngSrc="{{ imageBaseUrl }}/w500/{{ showItem.poster_path }}"
+        src="{{ imageBaseUrl }}/w500/{{ showItem.poster_path }}"
         [alt]="showItem.title"
-        [priority]="true"
       />
     </div>
     <div class="show-item-title">{{ showItem.title }}</div>

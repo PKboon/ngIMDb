@@ -7,8 +7,11 @@ import { AsyncPipe, JsonPipe, CommonModule } from '@angular/common';
 import { SliderComponent } from '../../components/slider/slider.component';
 import { TabViewModule } from 'primeng/tabview';
 import { IMAGES_SIZES } from '../../contants';
-import { Video } from '../../types/video';
+import { Cast, Image, Video } from '../../types/video';
 import { VideoFrameComponent } from '../../components/video-frame/video-frame.component';
+import { ImageModule } from 'primeng/image';
+import { CarouselModule } from 'primeng/carousel';
+import { BannerComponent } from '../../components/banner/banner.component';
 
 @Component({
   selector: 'show-details',
@@ -20,6 +23,9 @@ import { VideoFrameComponent } from '../../components/video-frame/video-frame.co
     SliderComponent,
     TabViewModule,
     VideoFrameComponent,
+    ImageModule,
+    CarouselModule,
+    BannerComponent,
   ],
   templateUrl: './show-details.component.html',
   styleUrl: './show-details.component.scss',
@@ -30,6 +36,10 @@ export class ShowDetailsComponent implements OnInit {
   imagesSizes = IMAGES_SIZES;
 
   videos$: Observable<Video[]> | null = null;
+  images$: Observable<Image[]> | null = null;
+  casts$: Observable<Cast[]> | null = null;
+
+  similars$: Observable<Movie[]> | null = null;
 
   constructor(
     private router: ActivatedRoute,
@@ -48,5 +58,8 @@ export class ShowDetailsComponent implements OnInit {
 
     this.details$ = this.movieService.getMovieById(this.id);
     this.videos$ = this.movieService.getVideosByMovieId(this.id);
+    this.images$ = this.movieService.getImagesByMovieId(this.id);
+    this.casts$ = this.movieService.getCastsByMovieId(this.id);
+    this.similars$ = this.movieService.getSimilarByMovieId(this.id);
   }
 }

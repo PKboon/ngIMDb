@@ -12,5 +12,6 @@ import { Movie } from '../../types/movie';
 })
 export class BannerComponent {
   @Input() title: string = '';
+
   @Input() shows: Movie[] = [];
 }
