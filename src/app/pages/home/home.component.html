@@ -1,13 +1,15 @@
-<ng-container *ngIf="popularMovies$ | async as popularMovies">
+@if (popularMovies$ | async; as popularMovies) {
   <slider [slides]="popularMovies"></slider>
-</ng-container>
+}
 
-<ng-container *ngIf="upcomingMovies$ | async as upcomingMovies">
+@if (upcomingMovies$ | async; as upcomingMovies) {
   <banner title="Upcoming Movies" [shows]="upcomingMovies"></banner>
-</ng-container>
-<ng-container *ngIf="topRatedMovies$ | async as topRatedMovies">
+}
+
+@if (topRatedMovies$ | async; as topRatedMovies) {
   <banner title="Top Rated Movies" [shows]="topRatedMovies"></banner>
-</ng-container>
-<ng-container *ngIf="popularTvShows$ | async as popularTvShows">
+}
+
+@if (popularTvShows$ | async; as popularTvShows) {
   <banner title="Popular TV Shows" [shows]="popularTvShows"></banner>
-</ng-container>
+}

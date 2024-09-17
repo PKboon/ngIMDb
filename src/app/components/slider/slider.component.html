@@ -1,35 +1,38 @@
 <div class="slider">
   <ng-container *ngFor="let movie of slides; let movieIndex = index">
-    <div class="slide" *ngIf="movieIndex === slideIndex" @slideFade>
-      <div class="slide-bg">
-        <img
-          ngSrc="{{ imageBaseUrl }}/original{{ movie.backdrop_path }}"
-          alt=""
-          fill
-        />
-      </div>
-      <div class="slide-pane">
-        <h2 class="title">{{ movie.title }}</h2>
-        <div class="meta">
-          <div class="rating">
-            <i class="pi pi-star-fill"></i>
-            <span>{{ movie.vote_average.toFixed(1) }}</span>
-            <span>/10</span>
-          </div>
-          <div class="votes">
-            <i class="pi pi-users"></i>
-            <span>{{ movie.vote_count | number }}</span>
-          </div>
-          <div class="release-date">
-            <i class="pi pi-calendar"></i>
-            <span>{{ movie.release_date | date }}</span>
-          </div>
+    @if (movieIndex === slideIndex) {
+      <div class="slide" @slideFade>
+        <div class="slide-bg">
+          <img
+            ngSrc="{{ imageBaseUrl }}/original{{ movie.backdrop_path }}"
+            alt=""
+            fill
+            [priority]="true"
+          />
         </div>
+        <div class="slide-pane">
+          <h2 class="title">{{ movie.title }}</h2>
+          <div class="meta">
+            <div class="rating">
+              <i class="pi pi-star-fill"></i>
+              <span>{{ movie.vote_average.toFixed(1) }}</span>
+              <span>/10</span>
+            </div>
+            <div class="votes">
+              <i class="pi pi-users"></i>
+              <span>{{ movie.vote_count | number }}</span>
+            </div>
+            <div class="release-date">
+              <i class="pi pi-calendar"></i>
+              <span>{{ movie.release_date | date }}</span>
+            </div>
+          </div>
 
-        <div class="description mt-5">
-          {{ movie.overview }}
+          <div class="description mt-5">
+            {{ movie.overview }}
+          </div>
         </div>
       </div>
-    </div>
+    }
   </ng-container>
 </div>

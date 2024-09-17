@@ -1,4 +1,4 @@
-<ng-container *ngIf="details$ | async as details">
+@if (details$ | async; as details) {
   <slider [slides]="[details]" [isHeader]="true"></slider>
 
   <p-tabView>
@@ -53,13 +53,18 @@
       </div>
     </p-tabPanel>
     <p-tabPanel header="Videos">
-      <p>
-        Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-        accusantium...
-      </p>
+      @if (videos$ | async; as videos) {
+        <div class="grid">
+          @for (video of videos; track video.key) {
+            <div class="col-4">
+              <video-frame [key]="video.key"></video-frame>
+            </div>
+          }
+        </div>
+      }
     </p-tabPanel>
     <p-tabPanel header="Photos">
       <p>At vero eos et accusamus et iusto odio dignissimos...</p>
     </p-tabPanel>
   </p-tabView>
-</ng-container>
+}

@@ -7,11 +7,20 @@ import { AsyncPipe, JsonPipe, CommonModule } from '@angular/common';
 import { SliderComponent } from '../../components/slider/slider.component';
 import { TabViewModule } from 'primeng/tabview';
 import { IMAGES_SIZES } from '../../contants';
+import { Video } from '../../types/video';
+import { VideoFrameComponent } from '../../components/video-frame/video-frame.component';
 
 @Component({
-  selector: 'app-show-details',
+  selector: 'show-details',
   standalone: true,
-  imports: [AsyncPipe, JsonPipe, CommonModule, SliderComponent, TabViewModule],
+  imports: [
+    AsyncPipe,
+    JsonPipe,
+    CommonModule,
+    SliderComponent,
+    TabViewModule,
+    VideoFrameComponent,
+  ],
   templateUrl: './show-details.component.html',
   styleUrl: './show-details.component.scss',
 })
@@ -19,6 +28,8 @@ export class ShowDetailsComponent implements OnInit {
   id: number = 0;
   details$: Observable<Movie> | null = null;
   imagesSizes = IMAGES_SIZES;
+
+  videos$: Observable<Video[]> | null = null;
 
   constructor(
     private router: ActivatedRoute,
@@ -36,5 +47,6 @@ export class ShowDetailsComponent implements OnInit {
     });
 
     this.details$ = this.movieService.getMovieById(this.id);
+    this.videos$ = this.movieService.getVideosByMovieId(this.id);
   }
 }
